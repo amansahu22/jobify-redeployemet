@@ -14,7 +14,6 @@ import xss from "xss-clean";
 //express-mongo-sanitize to prevent mongoDB operator injection
 import mongoSanitize from "express-mongo-sanitize";
 
-
 import ConnectDatabase from "./db/connect-db.js";
 
 // routers
@@ -53,12 +52,10 @@ app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
 
-
-
 //since we rae using es6 module and in es6 module dirname is not directly accessible(but it is accessible in common js)
 const __dirname = dirname(fileURLToPath(import.meta.url));
 //only when ready to deploy
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(path.resolve(__dirname, "./build")));
 
 app.use("/api/v1/auth", authRouter);
 
